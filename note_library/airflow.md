@@ -33,7 +33,18 @@ docker-compose up -d
 http://localhost:8080
 ```
 
-#### *移除步驟*
+#### *重啟服務 ( 更新檔案後的重整 )*
+```commandline
+docker-compose restart webserver
+```
+
+#### *完全重啟服務*
+```commandline
+docker-compose down
+docker-compose up -d
+```
+
+#### *移除服務步驟*
 ```commandline
 docker-compose down -v
 docker system prune --all --volumes

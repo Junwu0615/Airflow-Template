@@ -13,7 +13,7 @@
 - #### *一般 Compose 管理延展性太低，建議用 Compose + Swarm 方式佈署*
 - #### *Docker-Compose 我個人理解為`一個事先定義好的環境包`，方便快速導入環境*
   - ##### 與一般 Docker 差異在於多了層 Compose 管理 (基於下指令目錄而決定控制範圍)
-  - ##### version
+  - ##### 需設定 version
   - ##### 可設定多個 Service # 意味著多個 Container
   - ##### 可設定 Networks # 網路設置 # Container 彼此溝通渠道
   - ##### 可設定 Volumes # 待了解
