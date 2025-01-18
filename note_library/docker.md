@@ -12,6 +12,8 @@
 
 #### *前置作業: 一律需以管理員身份啟動 cmd ( 下指令 ) + docker ( 守護程式 )*
 
+#### *一般 Docker 主要用於在單個主機上定義和運行多個容器應用*
+
 #### *常見快捷鍵*
 ```commandline
 Ctrl + C # 退出環境
@@ -72,11 +74,6 @@ docker stop <container id>
 docker rm <container id>
 ```
 
-#### *刪除 service*
-```commandline
-docker rm <service name>
-```
-
 #### *刪除 images ( #需先移除 container 才能移除 images )*
 ```commandline
 docker rmi <images id>
@@ -87,14 +84,18 @@ docker rmi <images id>
 docker logs -f <container id> --tail 1000
 ```
 
-#### *打印 log # service*
-```commandline
-docker logs -f <service name> --tail 1000
-```
-
-#### *清理舊有暫存檔*
+#### *刪除所有未使用的 Docker 資源*
 ```commandline
 docker system prune
+```
+
+#### *刪除所有未使用的 Docker 資源 ( 更徹底地清除 )*
+```commandline
+# 所有未使用的 images
+# 所有停止的 container
+# 所有無用的 network
+# 所有未掛載的 volumes
+docker system prune --all --volumes
 ```
 
 #### *所有網路清單*

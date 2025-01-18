@@ -10,7 +10,7 @@
 
 ## ⭐ Docker-Swarm Note ⭐
 
-#### *前置作業: 一律需以管理員身份啟動 cmd ( 下指令 ) + docker ( 守護程式 )*
+#### *Swarm 用於在多個主機上管理容器，提供高可用性和可擴展性*
 
 #### *常見快捷鍵*
 ```commandline
@@ -72,9 +72,28 @@ docker rm <service name>
 docker logs -f <service name> --tail 1000
 ```
 
-#### *清理舊有暫存檔*
+#### *Docker Stack 是將 Docker Compose 部署到 Swarm 集群的便捷方式*
 ```commandline
-docker system prune
+# -c # --compose-file # 指定一個 Docker Compose 文件
+docker stack deploy -c docker-compose.yml <service>
+```
+
+#### *Docker Stack # --update 更新服務配置*
+```commandline
+docker stack deploy -c docker-compose.yml <service> --update
+```
+
+#### *Docker Stack 也不是無敵的*
+- ##### Compose 若包含非常複雜的配置，可能需要進行一些調整
+
+#### *查看 Stack 服務狀態*
+```commandline
+docker stack services <service>
+```
+
+#### *刪除 Stack 服務狀態*
+```commandline
+docker stack rm <service>
 ```
 
 <br>

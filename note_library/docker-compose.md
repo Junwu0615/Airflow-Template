@@ -10,11 +10,13 @@
 
 ## ⭐ Docker-Compose Note ⭐
 
-#### *Docker-Compose 我個人理解為`一個事先設定好的組合包`，方便快速導入環境*
-- ##### 與一般 Docker 差異在於多了個 Compose 管理層面 (基於下指令目錄而決定控制範圍)
-- ##### 可設定多個 Service # 意味著多個 Container
-- ##### 可設定 Networks # 網路設置 # Container 彼此溝通渠道
-- ##### 可設定 Volumes # 待了解
+- #### *一般 Compose 管理延展性太低，建議用 Compose + Swarm 方式佈署*
+- #### *Docker-Compose 我個人理解為`一個事先定義好的環境包`，方便快速導入環境*
+  - ##### 與一般 Docker 差異在於多了層 Compose 管理 (基於下指令目錄而決定控制範圍)
+  - ##### version
+  - ##### 可設定多個 Service # 意味著多個 Container
+  - ##### 可設定 Networks # 網路設置 # Container 彼此溝通渠道
+  - ##### 可設定 Volumes # 待了解
 
 #### *常見快捷鍵*
 ```commandline
@@ -49,6 +51,9 @@ docker-compose stop
 
 #### *停止並刪除 Container*
 ```commandline
+# 刪除所有容器
+# 刪除所有網路
+# 刪除所有volumn # -v
 docker-compose down
 ```
 
