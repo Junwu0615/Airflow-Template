@@ -8,19 +8,40 @@
 
 <br>
 
-## A.　Preamble
-### *本內容仍處於學習階段，註解或筆記可能隨時更新*
+## III.　Airflow Note
+#### *創建欲實作資料夾並進入*
+```commandline
+md airflow-space
+```
+```commandline
+cd airflow-space
+```
+
+#### *指令生成資料夾*
+```commandline
+md dags; md logs; md plugins; md config
+```
+- *dags : 待簡述*
+- *logs : 待簡述*
+- *plugins : 待簡述*
+- *config : 待簡述*
+
+#### *下載官方給予的 compose 範例*
+```commandline
+Invoke-WebRequest 'https://airflow.apache.org/docs/apache-airflow/2.10.4/docker-compose.yaml' -OutFile 'docker-compose.yaml'
+```
+
+#### *docker compose up 初始化 airflow ( 基於 compose 設定而進行初始化動作 )*
+```commandline
+docker-compose up -d
+```
+
+#### *瀏覽器訪問 Airflow's Web UI ( 預設密碼: airflow )*
+```commandline
+http://localhost:8080
+```
 
 <br>
 
-## B.　Showcase Results
-![00.jpg](/sample/00.jpg)
-
-![01.jpg](/sample/01.jpg)
-
-<br>
-
-## C.　Note Library
--  ### [*⭐ Docker ⭐*](./note_library/docker.md)
--  ### [*⭐ Docker-Compose ⭐*](./note_library/docker-compose.md)
--  ### [*⭐ Airflow ⭐*](./note_library/airflow.md)
+### Reference Resources
+-  [[Day16] 用 Docker Compose 建立 Airflow 環境](https://ithelp.ithome.com.tw/articles/10331507)
