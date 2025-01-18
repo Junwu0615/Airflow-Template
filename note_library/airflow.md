@@ -28,9 +28,15 @@ md dags; md logs; md plugins; md config
 docker-compose up -d
 ```
 
-#### *瀏覽器訪問 Airflow's Web UI ( 預設密碼: airflow )*
+#### *瀏覽器訪問 Airflow's Web UI ( 預設密碼 : airflow )*
 ```commandline
 http://localhost:8080
+```
+
+#### *移除步驟*
+```commandline
+docker-compose down -v
+docker system prune --all --volumes
 ```
 
 <br>
@@ -49,9 +55,9 @@ http://localhost:8080
 - ### *volumes*
   - ##### *可以將數據持久化到主機或其他容器中*
   - ##### *定義共享 Volumes。常用的包括 :*
-    - ##### *dags: 用於存放 DAG 文件*
-    - ##### *logs: 用於存放任務日誌*
-    - ##### *plugins: 用於存放自定義插件*
+    - ##### *dags : 用於存放 DAG 文件*
+    - ##### *logs : 用於存放任務日誌*
+    - ##### *plugins : 用於存放自定義插件*
 
 <br>
 

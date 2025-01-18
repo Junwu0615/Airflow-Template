@@ -79,13 +79,13 @@ x-airflow-common: &airflow-common
   depends_on: &airflow-common-depends-on
     redis:
       condition: service_healthy
-    database:
+    postgres:
       condition: service_healthy
-#    database:
+#    mongodb:
 #      condition: service_healthy
 
 services:
-  database:
+  postgres:
     image: postgres:13
     environment:
       POSTGRES_USER: airflow
@@ -100,7 +100,7 @@ services:
       start_period: 5s
     restart: always
 
-#  database:
+#  mongodb:
 #    image: mongo:latest
 #    volumes:
 #      - database-volume:/data/db
@@ -294,7 +294,5 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-#volumes:
-#  database-volume:
 volumes:
   database-volume:
