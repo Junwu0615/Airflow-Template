@@ -8,16 +8,16 @@
 
 <br>
 
-## I.　Docker Note
-#### *⭐ 前置作業: 一律需以管理員身份啟動 cmd ( 下指令 ) + docker ( 守護程式 ) ⭐*
+## ⭐ Docker Note ⭐
+
+#### *前置作業: 一律需以管理員身份啟動 cmd ( 下指令 ) + docker ( 守護程式 )*
+
 #### *常見快捷鍵*
 ```commandline
 Ctrl + C # 退出環境
 exit # 離開機器
 切換根目錄 # C: # D: # E:
---rm # container退出時就能夠自動清理container內部的檔案系統
--f # logs 參數 # 持續打印功用
---tail 1000 # logs 參數 # 顯示近1000行數據
+--rm # container 退出時就能夠自動清理 container 內部的檔案系統
 -t 指定 [鏡像名稱] : [標籤]
 -f 指定路徑 # DockerFile
 ```

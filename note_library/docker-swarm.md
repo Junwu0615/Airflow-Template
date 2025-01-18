@@ -8,56 +8,76 @@
 
 <br>
 
-## ⭐ Docker-Compose Note ⭐
+## ⭐ Docker-Swarm Note ⭐
 
-#### *Docker-Compose 我個人理解為`一個事先設定好的組合包`，方便快速導入環境*
-- ##### 與一般 Docker 差異在於多了個 Compose 管理層面 (基於下指令目錄而決定控制範圍)
-- ##### 可設定多個 Service # 意味著多個 Container
-- ##### 可設定 Networks # 網路設置 # Container 彼此溝通渠道
-- ##### 可設定 Volumes # 待了解
+#### *前置作業: 一律需以管理員身份啟動 cmd ( 下指令 ) + docker ( 守護程式 )*
 
 #### *常見快捷鍵*
 ```commandline
--d 讓 container 運行在背景 # docker-compose up -d
--v 代表 volumn 也要清空 # docker-compose down -v
+Ctrl + C # 退出環境
+exit # 離開機器
+切換根目錄 # C: # D: # E:
+--rm # container 退出時就能夠自動清理 container 內部的檔案系統
+-t 指定 [鏡像名稱] : [標籤]
+-f 指定路徑 # DockerFile
 ```
 
-#### *從 Docker Compose 建立出 Docker image*
+#### *初始化 Swarm 集群，使其成為管理節點*
 ```commandline
-docker-compose build
+docker swarm init
 ```
 
-#### *依照 build 的 Image 建立 Container*
+#### *呈上述，會跳出一行加入指令，給另一台機器輸入就可以加入該集群中*
 ```commandline
-docker-compose run
+docker swarm join --token SWMTKN-xxxxx-xxxxx-xxxxx
 ```
 
-#### *`build + run`，建立並啟動由 Container，每次執行都會重新建立 container 和 image*
+#### *若搞丟加入指令，可再次生成*
 ```commandline
-docker-compose up
+docker swarm join-token worker
 ```
 
-#### *啟動已經存在但目前是暫停的 container*
+#### *查看集群中的所有節點*
 ```commandline
-docker-compose start
+docker node ls
 ```
 
-#### *停止 Container*
+#### *退出工作節點 # -f 強制退出*
 ```commandline
-docker-compose stop	
+docker swarm leave -f
 ```
 
-#### *停止並刪除 Container*
+#### *選出新的管理節點*
 ```commandline
-docker-compose down
+docker node promote <新管理節點名稱>
 ```
 
-#### *重新啟動 Container*
+#### *Service 清單*
 ```commandline
-docker-compose restart
+docker service ls
+```
+
+#### *查看 Service 任務*
+```commandline
+docker service ps <服務名稱>
+```
+
+#### *刪除 service*
+```commandline
+docker rm <service name>
+```
+
+#### *打印 log # -f 持續打印 # --tail 近 1000 行日誌*
+```commandline
+docker logs -f <service name> --tail 1000
+```
+
+#### *清理舊有暫存檔*
+```commandline
+docker system prune
 ```
 
 <br>
 
 ### Reference Resources
--  [[Day16] 用 Docker Compose 建立 Airflow 環境](https://ithelp.ithome.com.tw/articles/10331507)
+-  [Google Gemini](https://gemini.google.com/)
