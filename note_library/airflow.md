@@ -10,52 +10,84 @@
 
 ## ⭐ Airflow Note ⭐
 
-#### *創建欲實作資料夾並進入*
-```commandline
-md airflow-space
-```
-```commandline
+#### *進入腳本路徑*
+```bash
 cd airflow-space
 ```
 
 #### *指令生成資料夾*
-```commandline
+```bash
 md dags; md logs; md plugins; md config
 ```
 
-#### *直接運行調整好的 compose 文件 # d 背景執行*
-```commandline
-docker-compose up -d
+#### *初始化設定*
+```bash
+docker compose up airflow-init
+```
+
+#### *執行*
+```bash
+# Background Execution
+docker compose up -d
 ```
 
 #### *瀏覽器訪問 Airflow's Web UI ( 預設密碼 : airflow )*
-```commandline
+```bash
 http://localhost:8080
 ```
 
 #### *重啟服務 ( 更新檔案後的重整 )*
-```commandline
-docker-compose restart webserver
+```bash
+docker-compose restart airflow-webserver
 ```
 
 #### *完全重啟服務*
-```commandline
+```bash
 docker-compose down
 docker-compose up -d
 ```
 
 #### *移除服務步驟*
-```commandline
+```bash
 docker-compose down -v
 docker system prune --all --volumes
 ```
 
 <br>
 
+## *Local Development*
+
+```bash
+caed-airflow
+  ├── .env
+  ├── docker-compose.yml
+  ├── confing
+  ├── plugins
+  ├── logs
+  ├── disabled # 放置欲遮蔽 dag 腳本
+  └── dags # 放置欲運行 dag 腳本
+       │
+       ├── logic # 放置 dag 引用邏輯
+       │   ├── crawler
+       │   └── other
+       │        └── hello_world.py
+       │
+       └── hello_world_dag.py
+```
+
+### *非 docker-compose 開發方式*
+- #### 本地運行邏輯程式，若通過則註解 if __main__ == '__name__':
+- #### 安裝本地開發必要套件
+   ```commandline
+   pip install -r requirements.txt
+   ```
+
+<br>
+
 ### *docker-compose.yaml*
 - ### *x-airflow-common*
   - ##### *通常用來設置環境變量、掛載卷、指定映像等，以減少重複配置*
-    ```commandline
+    ```bash
     在 services 下的每個服務中，使用 <<: *airflow-common 來繼承 x-airflow-common 中的配置。
     可以覆寫 x-airflow-common 中的配置，以滿足特定服務的需求
     ```

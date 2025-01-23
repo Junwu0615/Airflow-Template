@@ -15,7 +15,7 @@
 #### *一般 Docker 主要用於在單個主機上定義和運行多個容器應用*
 
 #### *常見快捷鍵*
-```commandline
+```bash
 Ctrl + C # 退出環境
 exit # 離開機器
 切換根目錄 # C: # D: # E:
@@ -25,72 +25,77 @@ exit # 離開機器
 ```
 
 #### *docker 版本確認*
-```commandline
+```bash
 docker -v
 ```
 
 #### *所有尚存活之 images*
-```commandline
+```bash
 docker images
 ```
 
 #### *所有曾經存在之 images*
-```commandline
+```bash
 docker images -a
 ```
 
 #### *所有尚存活之 container*
-```commandline
+```bash
 docker ps
 ```
 
 #### *所有曾經存在之 container*
-```commandline
+```bash
 docker ps -a
 ```
 
 #### *Service 清單*
-```commandline
+```bash
 docker service ls
 ```
 
 #### *創建 container*
-```commandline
+```bash
 docker run <image id>
 ```
 
 #### *啟動 container*
-```commandline
+```bash
 docker start <container id>
 ```
 
 #### *停止 container*
-```commandline
+```bash
 docker stop <container id>
 ```
 
 #### *刪除 container*
-```commandline
+```bash
 docker rm <container id>
 ```
 
 #### *刪除 images ( #需先移除 container 才能移除 images )*
-```commandline
+```bash
 docker rmi <images id>
 ```
 
 #### *打印 log # container*
-```commandline
+```bash
 docker logs -f <container id> --tail 1000
 ```
 
+#### *進入 container*
+```bash
+docker exec -it <container id> bash
+```
+
 #### *刪除所有未使用的 Docker 資源*
-```commandline
+```bash
 docker system prune
 ```
 
 #### *刪除所有未使用的 Docker 資源 ( 更徹底地清除 )*
-```commandline
+```bash
 # 所有未使用的 images
 # 所有停止的 container
 # 所有無用的 network
@@ -99,27 +104,27 @@ docker system prune --all --volumes
 ```
 
 #### *所有網路清單*
-```commandline
+```bash
 docker network ls
 ```
 
 #### *創建新網路*
-```commandline
+```bash
 docker network create <network>
 ```
 
 #### *刪除指定網路 ID*
-```
+```bash
 docker network rm <network>
 ```
 
 #### *讓 container 連接到網路 ID*
-```
+```bash
 docker network connect <network> <container>
 ```
 
 #### *斷開 container 與網路連接 ID*
-```
+```bash
 docker network disconnect <network> <container>
 ```
 

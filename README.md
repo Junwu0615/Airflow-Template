@@ -9,15 +9,20 @@
 <br>
 
 ## A.　Preamble
-### *碰壁很嚴重，先休息 ...*
 ### *本內容仍處於學習階段，註解或筆記可能隨時更新*
 
 <br>
 
 ## B.　Showcase Results
-![00.jpg](/sample/00.jpg)
+![jpg](/sample/00.jpg)
 
-![01.jpg](/sample/01.jpg)
+![jpg](/sample/01.jpg)
+
+![jpg](/sample/02.jpg)
+
+![jpg](/sample/03.jpg)
+
+![jpg](/sample/04.jpg)
 
 <br>
 
@@ -26,3 +31,6 @@
 -  ### [*⭐ Docker-Swarm ⭐*](./note_library/docker-swarm.md)
 -  ### [*⭐ Docker-Compose ⭐*](./note_library/docker-compose.md)
 -  ### [*⭐ Airflow ⭐*](./note_library/airflow.md)
+
+## D.　Other About Airflow Project
+-  ### [CAED feat.DL](https://github.com/dl-jack-123/CAED)

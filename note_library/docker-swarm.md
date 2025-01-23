@@ -13,7 +13,7 @@
 #### *Swarm 用於在多個主機上管理容器，提供高可用性和可擴展性*
 
 #### *常見快捷鍵*
-```commandline
+```bash
 Ctrl + C # 退出環境
 exit # 離開機器
 切換根目錄 # C: # D: # E:
@@ -23,63 +23,68 @@ exit # 離開機器
 ```
 
 #### *初始化 Swarm 集群，使其成為管理節點*
-```commandline
+```bash
 docker swarm init
 ```
 
 #### *呈上述，會跳出一行加入指令，給另一台機器輸入就可以加入該集群中*
-```commandline
+```bash
 docker swarm join --token SWMTKN-xxxxx-xxxxx-xxxxx
 ```
 
 #### *若搞丟加入指令，可再次生成*
-```commandline
+```bash
 docker swarm join-token worker
 ```
 
 #### *查看集群中的所有節點*
-```commandline
+```bash
 docker node ls
 ```
 
 #### *退出工作節點 # -f 強制退出*
-```commandline
+```bash
 docker swarm leave -f
 ```
 
 #### *選出新的管理節點*
-```commandline
+```bash
 docker node promote <新管理節點名稱>
 ```
 
 #### *Service 清單*
-```commandline
+```bash
 docker service ls
 ```
 
 #### *查看 Service 任務*
-```commandline
+```bash
 docker service ps <服務名稱>
 ```
 
 #### *刪除 service*
-```commandline
+```bash
 docker rm <service name>
 ```
 
+#### *用 Swarm 創建 `open_network` 網路*
+```bash
+docker network create --driver overlay --attachable open_network
+```
+
 #### *打印 log # -f 持續打印 # --tail 近 1000 行日誌*
-```commandline
+```bash
 docker logs -f <service name> --tail 1000
 ```
 
 #### *Docker Stack 是將 Docker Compose 部署到 Swarm 集群的便捷方式*
-```commandline
+```bash
 # -c # --compose-file # 指定一個 Docker Compose 文件
 docker stack deploy -c docker-compose.yml <service>
 ```
 
 #### *Docker Stack # --update 更新服務配置*
-```commandline
+```bash
 docker stack deploy -c docker-compose.yml <service> --update
 ```
 
@@ -87,12 +92,12 @@ docker stack deploy -c docker-compose.yml <service> --update
 - ##### Compose 若包含非常複雜的配置，可能需要進行一些調整
 
 #### *查看 Stack 服務狀態*
-```commandline
+```bash
 docker stack services <service>
 ```
 
 #### *刪除 Stack 服務狀態*
-```commandline
+```bash
 docker stack rm <service>
 ```
 

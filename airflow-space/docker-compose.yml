@@ -44,13 +44,15 @@
 #
 # Feel free to modify this file to suit your needs.
 ---
-x-airflow-common: &airflow-common
+x-airflow-common:
+  &airflow-common
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
   image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.10.4}
   # build: .
-  environment: &airflow-common-env
+  environment:
+    &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
@@ -76,13 +78,12 @@ x-airflow-common: &airflow-common
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0"
-  depends_on: &airflow-common-depends-on
+  depends_on:
+    &airflow-common-depends-on
     redis:
       condition: service_healthy
     postgres:
       condition: service_healthy
-#    mongodb:
-#      condition: service_healthy
 
 services:
   postgres:
@@ -92,24 +93,13 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - database-volume:/var/lib/postgresql/data
+      - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
       retries: 5
       start_period: 5s
     restart: always
-
-#  mongodb:
-#    image: mongo:latest
-#    volumes:
-#      - database-volume:/data/db
-#    healthcheck:
-#      test: ["CMD", "mongo", "--eval", "db.stats().ok == 1"]
-#      interval: 10s
-#      retries: 5
-#      start_period: 5s
-#    restart: always
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -125,7 +115,7 @@ services:
       start_period: 30s
     restart: always
 
-  webserver:
+  airflow-webserver:
     <<: *airflow-common
     command: webserver
     ports:
@@ -140,9 +130,9 @@ services:
     depends_on:
       <<: *airflow-common-depends-on
       airflow-init:
-       condition: service_completed_successfully
+        condition: service_completed_successfully
 
-  scheduler:
+  airflow-scheduler:
     <<: *airflow-common
     command: scheduler
     healthcheck:
@@ -157,7 +147,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-  worker:
+  airflow-worker:
     <<: *airflow-common
     command: celery worker
     healthcheck:
@@ -180,7 +170,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-  triggerer:
+  airflow-triggerer:
     <<: *airflow-common
     command: triggerer
     healthcheck:
@@ -294,5 +284,17 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+  airflow-python:
+    <<: *airflow-common
+    profiles:
+        - debug
+    environment:
+        <<: *airflow-common-env
+    user: "50000:0"
+    entrypoint: [ "/bin/bash", "-c" ]
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
 volumes:
-  database-volume:
+  postgres-db-volume:

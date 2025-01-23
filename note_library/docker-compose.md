@@ -19,38 +19,38 @@
   - ##### 可設定 Volumes # 待了解
 
 #### *常見快捷鍵*
-```commandline
+```bash
 -d 讓 container 運行在背景 # docker-compose up -d
 -v 代表 volumn 也要清空 # docker-compose down -v
 ```
 
 #### *從 Docker Compose 建立出 Docker image*
-```commandline
+```bash
 docker-compose build
 ```
 
 #### *依照 build 的 Image 建立 Container*
-```commandline
+```bash
 docker-compose run
 ```
 
 #### *`build + run`，建立並啟動由 Container，每次執行都會重新建立 container 和 image*
-```commandline
+```bash
 docker-compose up
 ```
 
 #### *啟動已經存在但目前是暫停的 container*
-```commandline
+```bash
 docker-compose start
 ```
 
 #### *停止 Container*
-```commandline
+```bash
 docker-compose stop	
 ```
 
 #### *停止並刪除 Container*
-```commandline
+```bash
 # 刪除所有容器
 # 刪除所有網路
 # 刪除所有volumn # -v
@@ -58,8 +58,13 @@ docker-compose down
 ```
 
 #### *重新啟動 Container*
-```commandline
+```bash
 docker-compose restart
+```
+
+#### *確認 compose 參數是否被正確載入*
+```bash
+docker-compose config
 ```
 
 <br>
