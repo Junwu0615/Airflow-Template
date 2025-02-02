@@ -128,6 +128,26 @@ docker network connect <network> <container>
 docker network disconnect <network> <container>
 ```
 
+#### *用 docker stack 啟動服務 ( docker-compose.yaml )*
+```bash
+docker stack deploy -c script/docker-compose.yaml <service name>
+```
+
+#### *用 docker stack 啟的服務清單*
+```bash
+docker stack ls
+```
+
+#### *移除 docker stack 服務*
+```bash
+docker stack rm <service>
+```
+
+#### *若沒清乾淨，則手動移除服務*
+```bash
+docker service rm <service>
+```
+
 <br>
 
 ### Reference Resources
