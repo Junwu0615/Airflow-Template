@@ -49,6 +49,11 @@ docker ps
 docker ps -a
 ```
 
+#### *Volume 清單*
+```bash
+docker volume ls
+```
+
 #### *Service 清單*
 ```bash
 docker service ls
@@ -69,14 +74,19 @@ docker start <container id>
 docker stop <container id>
 ```
 
-#### *刪除 container*
+#### *刪除 Volume*
 ```bash
-docker rm <container id>
+docker volume rm <volume id>
 ```
 
 #### *刪除 images ( #需先移除 container 才能移除 images )*
 ```bash
 docker rmi <images id>
+```
+
+#### *刪除 container*
+```bash
+docker rm <container id>
 ```
 
 #### *打印 log # container*
