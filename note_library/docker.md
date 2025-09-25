@@ -148,6 +148,11 @@ docker stack rm <service>
 docker service rm <service>
 ```
 
+#### *檢視各類型佔用空間大小*
+```bash
+docker system df
+```
+
 <br>
 
 ### Reference Resources
